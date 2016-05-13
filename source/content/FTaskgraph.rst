@@ -121,3 +121,11 @@ NameThread
     - PrivateQueueHiPri
     - OutstandingHiPriTasks
     - IncomingQueue
+
+
+调度类型
+========
+
+#. CreateAndDispatchWhenReady
+   Create a task and dispatch it when the prerequisites are complete
+#. 
