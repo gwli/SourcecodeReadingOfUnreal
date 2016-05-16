@@ -135,9 +135,7 @@ UGameEngine::Tick
 UWorld::Tick
 ============
 
-All child actors are ticked after their owners have been ticked.
 
-TickGroup
 #. UMETA Pre Physics
 #. Start Physics
 #. During Physics
@@ -167,3 +165,16 @@ Steps
 #. FXSystem->Tick ??
 #. garbageCollection
 
+
+
+PhysScense
+==========
+
+FPhysScene::EndFrame/StartEndFrame,
+
+FinishPHysicsSim ->EndFrame
+
+// the physics tick functions
+
+void FStartPhysicsTickFunction::ExecuteTick(float DeltaTime, enum ELevelTick TickType, ENamedThreads::Type CurrentThread, const FGraphEventRef& MyCompletionGraphEvent)
+void FEndPhysicsTickFunction::ExecuteTick(float De

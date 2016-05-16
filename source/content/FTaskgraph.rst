@@ -122,10 +122,20 @@ NameThread
     - OutstandingHiPriTasks
     - IncomingQueue
 
+TGraphTask
+==========
+
+#. 产生与处理依赖。
+SetupPrereqs
 
 调度类型
 ========
 
 #. CreateAndDispatchWhenReady
    Create a task and dispatch it when the prerequisites are complete
-#. 
+#. ProcessThreadUntilRequestReturn 
+
+
+
+各种snync_syncrhonize 最终实现都是基于机器自己的，于Unreal中 MemoryBarrier 都是用指 arm "dmb ish". 
+http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0204ic/CIHJFGFE.html
