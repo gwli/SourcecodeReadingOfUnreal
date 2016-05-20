@@ -42,3 +42,11 @@ Android Launch/Deploy
    adb.exe -s TNS0000002194000590a shell am start -n com.YourCompany.VehicleAdvanced_C/com.epicgames.ue4.SplashActivity
    
     
+
+如果只要生成的生成工程只要在LaunchPreparation Commandline 加入。
+
+$(SdkAdbPath) -s $(AndroidDeviceID) shell rm -r /sdcard/UE4Game/MyFirstPerson_4_10_1
+$(SdkAdbPath) -s $(AndroidDeviceID) push "F:\Unreal\Unreal_Projects\MyFirstPerson_4_10_1\Saved\StagedBuilds\Android_ASTC" "/sdcard/UE4Game/MyFirstPerson_4_10_1"
+del /Q "C:\UnrealEngine-4.10\NVIDIA_Android_Lab_GDC2016\Binaries\Android\libUE4.so"
+mklink /H  "C:\UnrealEngine-4.10\NVIDIA_Android_Lab_GDC2016\Binaries\Android\libUE4.so" "C:\UnrealEngine-4.10\Engine\Binaries\Android\UE4Game-Android-Debug-armv7-es31.so"
+
