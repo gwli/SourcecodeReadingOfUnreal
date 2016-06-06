@@ -132,7 +132,7 @@ SetupPrereqs
 ========
 
 #. CreateAndDispatchWhenReady
-   Create a task and dispatch it when the prerequisites are complete
+-  Create a task and dispatch it when the prerequisites are complete
 #. ProcessThreadUntilRequestReturn 
 
 
