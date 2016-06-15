@@ -53,6 +53,7 @@ https://docs.unrealengine.com/latest/INT/API/Runtime/Engine/Particles/UParticleS
 
 建模方式
 =========
+
 一个mesh,sketch bone, physical Asset.
 wheels and vichles.
 https://docs.unrealengine.com/latest/INT/Engine/Physics/Vehicles/VehicleUserGuide/index.html
@@ -64,3 +65,28 @@ https://docs.unrealengine.com/latest/INT/Engine/Physics/Vehicles/VehicleUserGuid
 
 对于对象的设计，一个类可以是另一个类的成员。
 每个类都会有staticClass来生成这公有方法。采用工厂的生成方尖。 并且所有实例的生成都是由引擎来生成的，我们只设计类。
+
+
+整个过程制作与参数的调整，并且写一个自动化case来进行可视化仿真平台。
+https://wiki.unrealengine.com/Introduction_to_Vehicles_in_UE4_Playlist
+
+同时也可以用PhysX那种组合的模式，然后用Joint或者Socket连接起来。可以直接代码写，也可以用blueprint来进行可视化的组装。
+
+
+路的制作
+========
+
+最快的方法那是采用splinemesh的方法，另外一种采用基本模型进行拉伸就行了。
+直接利用landscape中splinemesh 那样。
+https://docs.unrealengine.com/latest/INT/Resources/ContentExamples/Landscapes/1_2/
+
+或者自己建立一个actor类，然后在这个里面加入splinemesh, 然后compile,然后这个BP加入场景。这样你就可以添加mesh control point. 只要按
+Ctrl直接拖就行了。 但是如果直接用basic里的splinemesh好像是不行的。
+
+
+现在对于blueprint的用法有了更深的认识，Unreal提供了一些基础组件，然后你可以任意组合组成一个类。这个一直是自己想要达到的效果。
+最灵活的接口创建一门自己DSL,而Blueprint正是这样的功能。所有的可视化组件放在level中都可以用actor来封装。然后就可以任意调用。
+Unreal所做的事，就是把图形mesh,physX,AI等等变成了一基础类库，可以进行各种形式的集成。这样可以方便写代码。
+
+所以用blender+python是可以达到同样的效果来产生基础mesh类。
+

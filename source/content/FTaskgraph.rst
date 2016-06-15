@@ -1,6 +1,18 @@
+
+
 Taskgraph 是Unreal的一个多线程系统。基本介绍可以参考
 https://wiki.unrealengine.com/Multi-Threading:_Task_Graph_System
 https://wiki.unrealengine.com/Multi-Threading:_How_to_Create_Threads_in_UE4
+
+
+开始
+=====
+
+起动是在FEngineLoop:PreInit
+
+initialize task graph sub-system with potential multiple threads
+FTaskGraphInterface::Startup( FPlatformMisc::NumberOfCores?() );
+FTaskGraphInterface::Get().AttachToThread?( ENamedThreads::GameThread? );
 
 
 线程池

@@ -34,6 +34,34 @@ Profiling
 同时采用大量工厂模式，这样实例化才方便，有python的味道，一切都是UObject,先是基本数据，后面再是添加数据以及修改。这就必然模块是可以伸缩的。
 
 
+FName
+=====
+
+所有字符串，以及类名都是存在hash表中，就像obj中string的做法一样。 具体可以看
+FName::InitInternal_FindOrAddNameEntry这个方法，D:\UE4_11\Engine\Source\Runtime\Core\Private\UObject\UnrealNames.cpp
+
+
+构造函数传参
+============
+
+https://forums.unrealengine.com/showthread.php?60042-4-7-How-do-I-actually-pass-parameter-s-in-the-new-constructor-format
+在UE4中你是不会直接调用构造函数的，并且都是通过工厂模式来实现的，并且参数分为不变部分与可以变部分。其通用的参数是:command:`FObjectInitializer`. 由它来控制是调用哪些回调。d:\UE4_11\Engine\Source\Runtime\CoreUObject\Public\UObject\UObjectGlobals.h:698 FObjectInitializer. 想要传参数只要把CreateDefaultSubobject等等几个函数搞明白就行了。
+所以其构造函数就设计成了static，如果动态调整其参数就只能用回调函数来实现，例如
+Init函数，或者Pre/Post等等来实现。AActor::InitializeDefaults().
+
+
+Console Manager: Console Variables in C++
+=========================================
+
+相当于自定义的环境变量的实现
+https://docs.unrealengine.com/latest/INT/Programming/Development/Tools/ConsoleManager/index.html
+
+内存管理
+========
+
+FMallocBinned2::FMallocBinned2(uint32 InPageSize, uint64 AddressLimit)
+d:\UE4_11\Engine\Source\Runtime\Core\Private\HAL\MallocBinned2.cpp
+
 引用计数
 ========
 
@@ -68,3 +96,5 @@ Unreal 本身已经有了大量的counter计数了，可以查看stat2.h
    	CORE_API static FStartupMessages& Get();
    };
    
+
+

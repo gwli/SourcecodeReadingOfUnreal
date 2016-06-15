@@ -54,6 +54,7 @@ GL函数封装可以在,D:\UE4_11\Engine\Source\Runtime\Core\Private\Linux\Linux
 	EnumMacro(PFNGLCLEARCOLORPROC, glClearColor) \
 	EnumMacro(PFNGLDRAWARRAYSPROC, glDrawArrays) \
 
+生成函数让TaskGraph来执行。
 
 ThreadRendering
 ================
@@ -150,5 +151,19 @@ FObjectInstaningGraph
 
 Cooking resource
 ================
+
+
+shader compiling
+----------------
+
+VehicleAdvanced_C-Win64-Debug.exe!VerifyGlobalShaders(EShaderPlatform Platform, bool bLoadedFromCacheFile) Line 284	C++
+VehicleAdvanced_C-Win64-Debug.exe!GetGlobalShaderMap(EShaderPlatform Platform, bool bRefreshShaderMap) Line 599	C++
+VehicleAdvanced_C-Win64-Debug.exe!FEngineLoop::PreInit(const wchar_t * CmdLine) Line 1421	C++
+VehicleAdvanced_C-Win64-Debug.exe!EnginePreInit(const wchar_t * CmdLine) Line 31	C++
+VehicleAdvanced_C-Win64-Debug.exe!GuardedMain(const wchar_t * CmdLine, HINSTANCE__ * hInInstance, HINSTANCE__ * hPrevInstance, int nCmdShow) Line 110	C++
+VehicleAdvanced_C-Win64-Debug.exe!WinMain(HINSTANCE__ * hInInstance, HINSTANCE__ * hPrevInstance, char * __formal, int nCmdShow) Line 189	C++
+[External Code]	
+d:\UE4_11\Engine\Source\Runtime\Engine\Private\GlobalShader.cpp
+
 
 #.
