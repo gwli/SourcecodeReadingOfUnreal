@@ -37,4 +37,6 @@ http://expletive-deleted.com/2015/06/17/item-pickup-system-in-unreal-engine-usin
 同时用一些debug函数划线实现一些特效。
 
 把其放在tick中，并且:command:`InputCompoent->BindAction` 来绑定事件。
-
+https://docs.unrealengine.com/latest/INT/Gameplay/Input/index.html
+非累积式用action,累积式用axis.
+https://www.unrealengine.com/blog/input-action-and-axis-mappings-in-ue4
