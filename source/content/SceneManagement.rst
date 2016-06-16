@@ -25,6 +25,16 @@ UPrimitiveComponent
 ULightComponent
 FScene
 
+
+
+
+GL command 调用方式
+====================
+
+Graphic 的代码都是采用元语言的方式来生成的，而不是直接调用。
+
+
+
 各种ENQUE_UNIQUEXXX 都是用宏继承于FRenderCommand. RenderingThread.h:190
 
 而各种RHICommandList 而在d:\UE4_11\Engine\Source\Runtime\RHI\Private\RHICommandList.cpp
@@ -55,6 +65,15 @@ GL函数封装可以在,D:\UE4_11\Engine\Source\Runtime\Core\Private\Linux\Linux
 	EnumMacro(PFNGLDRAWARRAYSPROC, glDrawArrays) \
 
 生成函数让TaskGraph来执行。
+
+
+并且动态mesh与静态的mesh要分开的，最简单的原理，采用两个buffer来分别放，一个static,一个dynamic.
+对于静态的只需要修改Indexbufffer来进行drawcall,而动态的则需要glbufferData来更新数据本身。
+
+现在的做法把场景中mesh按类型进行分类，在画的时候，可以使用一个drawCall来画的尽可能多，来减少
+Overhead. 同样DLL一样，GL的操作本身并不提供这些管理工作，而是需要APP自己来管理的。
+Unreal是通过场景管理来进行分类管理。具体可以参考。
+DyanmicPrimitiveDrawing.h 与 DyanmicPrimitiveDrawing.inl 这个文件，你就会看到大量的firstIndex,lastIndex.
 
 ThreadRendering
 ================
