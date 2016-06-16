@@ -1,4 +1,5 @@
 Unreal的起动模式，是并行化，先把所有的resource加载，然后设置，event事件。
+
 PreInitModules
 ==============
 #. basic
@@ -135,7 +136,6 @@ UGameEngine::Tick
 UWorld::Tick
 ============
 
-
 #. UMETA Pre Physics
 #. Start Physics
 #. During Physics
@@ -178,3 +178,14 @@ FinishPHysicsSim ->EndFrame
 
 void FStartPhysicsTickFunction::ExecuteTick(float DeltaTime, enum ELevelTick TickType, ENamedThreads::Type CurrentThread, const FGraphEventRef& MyCompletionGraphEvent)
 void FEndPhysicsTickFunction::ExecuteTick(float De
+
+
+Module的加载与管理
+===================
+
+C:\UnrealEngine-4.10\Engine\Source\Runtime\Core\Private\Modules\ModuleManager.cpp
+
+其后台都是使用的DLL动态库加载，但是原始的动态库接口函数dlopen/dlsym/dlclose只提供了内容加载代码区，然后自己手工的把函数找出来。
+同时虽然用一些常规的方法可以知道有些函数在这个DLL中，但是自动导出这些函数来供其他函数使用。这个方法可以用脚本语言这样来做，例如
+python这些都已经实现的。 Unreal也是自己实现了类似于SWIG这样的接口，这样自己所有函数都可以实现动态的加载。
+并且Unreal也自己记录哪些dll的加载了，所些没有加载。以及改动。并且在tick时实时的加载。
