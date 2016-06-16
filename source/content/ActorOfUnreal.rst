@@ -40,3 +40,12 @@ http://expletive-deleted.com/2015/06/17/item-pickup-system-in-unreal-engine-usin
 https://docs.unrealengine.com/latest/INT/Gameplay/Input/index.html
 非累积式用action,累积式用axis.
 https://www.unrealengine.com/blog/input-action-and-axis-mappings-in-ue4
+
+各种物理运动
+============
+
+可以采用其Physics constraint,或者直接力学仿真，就像汽车的轮子一样。 需要复杂的方程计算。
+
+例如轨道旋转 https://forums.unrealengine.com/showthread.php?92190-How-to-rotate-an-actor-around-another-actor
+
+或者简单的不需要物理计算，只是简单的动画KR之类的依赖。 直接使用仿射变换方程就行了。
