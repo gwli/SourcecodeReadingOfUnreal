@@ -69,8 +69,34 @@ d:\UE4_11\Engine\Source\Runtime\Core\Private\HAL\MallocBinned2.cpp
 对于具体的系统，它的垃圾回收机制都会定义引用计数的加减操作。
 
 
+回调的实现
+==========
+
+在不同的语言有不同叫法。其本质就是一个函数指针，而在汇编层面，那就是子程序代码的首地址。 每一段都编译器先放一个占位符，最后放入实际的值。
+
+
+而在底层，高级语言比汇编强的一点，实现一定的代码搜索功能。
+主要是根据编译器特性来实现的，因为所有代码回到了汇编了之后，就像在汇编层面添加自己的应用，然后这种算法再转换成一个pattern,并且添加一个关键字让编译器能够生成对应的代码。
+C++的面向对象，要求编译器要构造虚表，在执行的时候还要一些搜索操作。
+
 profiling
 =========
+
+profiling看什么呢，这根据不同目标就会方法，对于特定的目标来说，那就是时间越短越好。然后那是不断的break down,然后找到瓶颈，并且想办法去解决。也可能不能解决。
+
+原因就像编程一样，因为不可能从汇编开始，就不可避免会有指令的冗余。对于Unreal这样大的组件，冗余肯定不少，也就是找到他们。 因为现在算法，也不是万能的，不会智能去判断，造多余的计算。
+
+#. 先看FPS，并且看时间花在哪里 :command:`start unit`
+#. 或者直接用start/StopFPSChart得到数据。
+#. 再加上 dumpFrame来得到更加详细的数据。
+#. 然后再看 :command:`start SceneRendring` 等。
+#. :command:`Show StaticMeshes`.
+#. :command:`stat Particles`  以及 :command:`Show Particles`.
+#. 
+
+#. 程序代码执行时间
+#. 程序函数或代码段（汇编指令)执行次数
+#. 内存使用量
 
 Unreal 本身已经有了大量的counter计数了，可以查看stat2.h
 
@@ -92,9 +118,33 @@ Unreal 本身已经有了大量的counter计数了，可以查看stat2.h
    	/** Adds a regular metadata. */
    	CORE_API void AddMetadata( FName InStatName, const TCHAR* InStatDesc, const char* InGroupName, const char* InGroupCategory, const TCHAR* InGroupDesc, bool bShouldClearEveryFrame, EStatDataType::Type InStatType, bool bCycleStat, FPlatformMemory::EMemoryCounterRegion InMemoryRegion = FPlatformMemory::MCR_Invalid );
    
-   	/** Access the singleton. */
+   	/** Access the singleton. **/
    	CORE_API static FStartupMessages& Get();
    };
    
 
+要根据profiling添加自己的event与counter. 具体如何用。
+http://docs.unrealengine.com/latest/INT/Engine/Performance/Profiler/index.html
 
+#. UE4Game.exe --messaging
+#. UnrealFrontend.exe --messaging
+
+就可以看到这些counter值，以及各种图表了。
+
+
+或者直接用start/StopFPSChart然后用excel来打开看看FPS的情况，虽然你能看到每frame的情况，但是还没有办法精确的定位是哪一个frame,然后再一步分析。
+当然能够配合截图录制那就更好。
+
+
+要有一个大体的方向，然后逐步的细化。
+
+CPU profiling
+=============
+
+如果有大量的draw calls会花费大量时间，一个办法那就是合并draw call. 
+例外减少object量，场景复杂度，都是减少cpu时间，因为scene management本身是由CPU来做。
+例如各种光照的减裁。
+
+另外一些那就是物理数值的计算。 同时注意scale的问题，一般来说分辨越高，计算量越大。
+
+需要更多优化，每次都先看下手册https://docs.unrealengine.com/latest/INT/Engine/Performance/
