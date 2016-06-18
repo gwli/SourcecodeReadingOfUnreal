@@ -4,6 +4,7 @@ D:\UE4_11\Engine\Source\Runtime\RenderCore\Private\RenderingThread.cpp
 #. 开始  RenderingThreadMain
 #. 调度
 FRenderCommandFence.Wait用来同步，要gamethread来等renderingthread.
+
 #. 结束 
 Unreal 用八叉树来进行场景管理。
 #. 传输， 通过 CreateNewobject然后把这个NewObject扔给render,并且这个对象都有对应GameThread类与Rendering类。
@@ -25,7 +26,85 @@ UPrimitiveComponent
 ULightComponent
 FScene
 
+场景管理的 14 pass
+==================
 
+这个可以从 :command:`stat SceneRendering`.得到
+
+#. Base pass drawing
+#. Begin OcclusionTests
+#. Depth drawing
+#. Dynamic Primitive drawing
+#. Dynamic shadow setup
+#. FinishRenderingViewTarget
+#. InitViews
+#. LightingDrawing
+#. Proj Shadow drawing
+#. RenderVelocities
+#. StaticDrawList drawing
+#. RenderViewFamily
+#. Translucency drawing
+
+
+三种counter
+-----------
+
+#. Dynamic path draw calls
+#. mesh draw calls
+#. Present time
+#. lights scene
+#. Static list draw calls.
+
+Game Threading profiling
+=========================
+
+#. Blueprint Time
+#. Finish Async Trace Time
+#. GC Sweep Time
+#. MoveComponent Time
+#. Nav Tick Time
+#. Net Post BC Tick Time
+#. Net Broadcast Tick Time
+   - Transform or RenderData
+   - Recreate
+#. Post Tick Component update
+#. Queue Ticks
+#. Reset Async Trace Time
+#. Runtime Movie Tick Time
+#. TeleportTo Time
+#. GT Tickable Time
+#. Tick Time
+#. Update Camera Time
+#. World Tick Time
+
+counters
+---------
+#. Ticks Queued
+
+
+GPU profiling
+=============
+
+可以通过 r.ProfileGPU..ShowUI来看到。
+
+#. EarlyZPass
+#. Base Pass
+#. Shadow map rendering
+#. Shadow Projection/filtering
+#. Occlusion culling
+#. Defferred lighting
+#. Tiled defferred lighting
+#. Environment reflection
+#. Ambient occlusion
+#. Post processing
+
+这些都会影响性能。减少一些不必要计算。这样才能节省时间，在这里没有什么办法可以计算更快。而更多的是
+裁减。
+https://docs.unrealengine.com/latest/INT/Engine/Performance/GPU/index.html
+bottleneck是会随着scale的变化而变化的，这个不是一个静态的值，而工具分析是提供一个静态的值，例如GPU的bottleneck是会谁着你的pixel,vertex的数量的多少而变化的，在复杂的场景下，一个frame可能会成千个draw.而不是自己所想的那些一个draw来搞定一切了。
+
+并且关于renderingSetting可以查看这个类。
+https://docs.unrealengine.com/latest/INT/API/Runtime/Engine/Engine/URendererSettings/index.html
 
 
 GL command 调用方式
