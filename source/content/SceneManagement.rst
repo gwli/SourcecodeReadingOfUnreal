@@ -29,6 +29,10 @@ FScene
 场景管理的 14 pass
 ==================
 
+#. GameThread - The GameThread handles updating gameplay. This includes ticking Actors, ticking components, performing garbage collection, etc.
+#. RenderThread - The RenderThread handles performing lighting calculations, shadowing calculations, translucenecy setup, updating scene captures, occlusion, etc.
+
+
 这个可以从 :command:`stat SceneRendering`.得到
 
 #. Base pass drawing
@@ -265,3 +269,28 @@ d:\UE4_11\Engine\Source\Runtime\Engine\Private\GlobalShader.cpp
 
 
 #.
+Level Profiling
+===============
+
+https://udn.epicgames.com/Three/LevelOptimization.html
+
+对于一个东东，首先要搞清楚它是哪里计算的，例如lighting来说，找到哪些物体需要lighting,并且需要什么类型的lighting,这个是CPU的来计算的，真正的lighting本身的计算是放在GPU的shader中来计算的。
+
+例外查看:command:`stat threading` 来看thread的IDEL time就知道，gamethread与renderingthread之间的速度匹配的程度。
+
+而GPU本身，瓶颈一般是shader throughput,以及屏幕的分辨率。
+
+
+Lightmaps 的使用可以减轻CPU与GPU的load. 是不是用lightmaps, 是在primtive 的属性上来设置的(UseDirectLightMap or bForceDirectLightMap).
+
+所有特效都是以performance为基础的，例如dynamic shadow对性能影响还是很大的。
+
+
+另一个性能的影响那就是static Meshes以及基本primtives.
+
+Materials,采用viewmode来看， 越绿说明复杂度越低。
+
+并且对于level的profiling可以细化到每一个primitive，再细化就像修改原始primitive的设计了。
+
+
+同时各种Cull Distance Volumnes的设置是为了优化计算。
