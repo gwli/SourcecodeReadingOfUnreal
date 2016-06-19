@@ -1,3 +1,15 @@
+粒子系统
+========
+
+Unreal也实现了一个类似于 OGL的流程，这样只关心什么时候画什么问题。
+具体流程
+
+#. Particle Simulatation Time(tick) 是在 GameThread中做。
+#. Particle data finialzation(Packing Gemotry,Draw Calls) 是在Render Thread中做。
+#. Particle Visuals 在GPU上做。
+
+
+
 开始
 =====
 
@@ -5,6 +17,54 @@
 
 
 Unreal这种engine,在运行的中有很多都是预编译，并且是能提前就提前。
+
+
+流程
+====
+
+#. Anim Trail Notify Time
+#. Trail Tick Time
+#. Trail Render Time
+#. Particle SkelMeshSurf Time
+#. Particle Collision Time
+#. Mesh Tick Time
+#. Mesh Render Time
+#. Wait for ASync Time
+#. Async Work Time
+#. UpdateInstances Time
+#. Update Bounds Time
+#. Activate Time
+#. Initialize Time
+#. SetTemplate Time
+#. Particle Packing Time
+#. Pacrticle Render Time
+#. Particle Tick Time
+#. PSys Comp Tick Time
+#. Sprite Update Time
+#. Sprite Spawn Time
+#. Sprite Tick Time
+#. Sprite Render Time
+#. Sort Time
+#. Beam Tick Time
+#. Beam Render Time
+#. Beam Spawn Time
+#. Particle Tool Time
+
+#. Beam Particles
+#. Beam Ptcls Spawned
+#. Beam Ptcls killed
+#. Beam Ptcls Tris
+#. Particle Draw Calls
+#. Sprite Particles
+#. Sprite Ptcls Spawned
+#. Sprite Ptcls Updated
+#. Sprite Ptcls Killed
+#. Mesh Particles
+#. Trail Particles
+#. Trail Ptcls Spawned
+#. Trail Ptcls Killed
+#. Trail Ptcls Tris
+
 
 VectorField
 ===========
@@ -41,3 +101,5 @@ https://docs.unrealengine.com/latest/INT/Engine/Rendering/ParticleSystems/Vector
 并且GPU粒子与CPU的粒子可能支持的feature可能有所不同。甚至不兼容。
 
 例如特殊造型的可以用Init Location module来实现。
+
+而对于particle系统优化原则与steps https://docs.unrealengine.com/latest/INT/Engine/Rendering/ParticleSystems/Optimization/Concepts/index.html
