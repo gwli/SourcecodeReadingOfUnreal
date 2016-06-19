@@ -1,6 +1,5 @@
-CreateNavigationSystem是在InitWorld时创建的。
-
->	VehicleAdvanced_C-Win64-Debug.exe!UNavigationSystem::CreateNavigationSystem(UWorld * WorldOwner) Line 2150	C++
+CreateNavigationSystem 是在InitWorld时创建的。
+	VehicleAdvanced_C-Win64-Debug.exe!UNavigationSystem::CreateNavigationSystem(UWorld * WorldOwner) Line 2150	C++
  	VehicleAdvanced_C-Win64-Debug.exe!UWorld::InitWorld(const UWorld::InitializationValues IVS) Line 913	C++
  	VehicleAdvanced_C-Win64-Debug.exe!UEngine::LoadMap(FWorldContext & WorldContext, FURL URL, UPendingNetGame * Pending, FString & Error) Line 9753	C++
  	VehicleAdvanced_C-Win64-Debug.exe!UEngine::Browse(FWorldContext & WorldContext, FURL URL, FString & Error) Line 8945	C++
@@ -51,3 +50,12 @@ Unreal的物理引擎用的是nvidia的Physix,并且各种动画的连接，也�
 
 一般Physical 都是建立在skeletal mesh 上的。
 
+
+
+Precomputed 
+===========
+
+在设置属性的，可用通过PrecomputedVisualVolumes来设置哪些东东是可以提前计算好的，也就是放在cooking阶段就计算的。
+同时也可以通过:command:`start initviews` 来查看。 
+
+当然也可以通过 :command:`start openglrhi` 来查看。
