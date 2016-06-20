@@ -25,7 +25,19 @@ Profiling
 例如 C:\UnrealEngine-4.10\Engine\Source\Runtime\Core\Private\Stats\Stats2.cpp 中那样，直接在原来函数中实现替换成nvtx.
 采用方法，采用的是package模式，单独起一线程，来来接收profiling data package.
 
+或者直接使用Unreal自己的stat宏实现一个自己的。
+https://wiki.unrealengine.com/Profiling,_How_To_Count_CPU_Cycles_Of_Specific_Blocks_Of_Your_Game_Code。
 
+只需三步
+
+.. code-block:: cpp
+   DECLARE_STATS_GROUP(TEXT("JoyBall"), STATGROUP_JoyBall, STATCAT_Advanced);
+   DECLARE_CYCLE_STAT(TEXT("Joy ~ PerformSphereMovement"), STAT_PerformSphereMovement, STATGROUP_JoyBall);
+   SCOPE_CYCLE_COUNTER(STAT_PerformSphereMovement)
+
+
+另外在代码使用Exec进行自动数据收集，来执行一些console命令。 或者实现一些优化。
+当然这个最好放在自动化里去做。
 
 设计模式
 ========
@@ -95,6 +107,8 @@ profiling看什么呢，这根据不同目标就会方法，对于特定的目�
 例如对于mobile平台的，这种低性能device上，要考虑的性能，那就是LDR,HdR等等。
 https://docs.unrealengine.com/latest/INT/Platforms/Mobile/Lighting/HowTo/ModulatedShadows/index.html
 
+一些常见问题 https://udn.epicgames.com/Three/GameplayPerformanceOptimization.html
+
 #. 先看FPS，并且看时间花在哪里 :command:`start unit`
 #. 或者直接用start/StopFPSChart得到数据。
 #. 再加上 dumpFrame来得到更加详细的数据。
@@ -156,6 +170,14 @@ http://docs.unrealengine.com/latest/INT/Engine/Performance/Profiler/index.html
    
    Trace Render
    Trace Game
+
+常用的技巧
+==========
+
+#. just turn it off 
+#. look at a wall
+#. Spawn Nof a Type
+https://udn.epicgames.com/Three/ProfilingBasics.html
 
 CPU profiling
 =============

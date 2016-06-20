@@ -8,6 +8,7 @@ Unreal也实现了一个类似于 OGL的流程，这样只关心什么时候画�
 #. Particle data finialzation(Packing Gemotry,Draw Calls) 是在Render Thread中做。
 #. Particle Visuals 在GPU上做。
 
+例子数量等等都是影响性能的。
 
 
 开始

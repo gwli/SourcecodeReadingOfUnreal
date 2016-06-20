@@ -33,6 +33,7 @@ FScene
 #. RenderThread - The RenderThread handles performing lighting calculations, shadowing calculations, translucenecy setup, updating scene captures, occlusion, etc.
 
 
+
 这个可以从 :command:`stat SceneRendering`.得到
 
 #. Base pass drawing
@@ -42,6 +43,7 @@ FScene
 #. Dynamic shadow setup
 #. FinishRenderingViewTarget
 #. InitViews
+   这个主要是visibity culling 操作，主要static/dynamic meshes.
 #. LightingDrawing
 #. Proj Shadow drawing
 #. RenderVelocities
@@ -58,6 +60,15 @@ FScene
 #. Present time
 #. lights scene
 #. Static list draw calls.
+
+
+:command:`Stat SCENEUPDATE` 能得到 ogl的资源的更新状态，添加什么，改动什么。
+
+
+#. Run Stat unit
+#. stat scendering
+#. stat sceneupdate
+#. set breakpoint at AddLight. to see why and who do this slow.
 
 Game Threading profiling
 =========================
@@ -89,7 +100,9 @@ counters
 GPU profiling
 =============
 
-可以通过 r.ProfileGPU..ShowUI来看到。
+两大关键点，pixel shading,这个是随着screen的大小而变的，另一个transform/skinning就是 vertex shadering了。 一般光照复杂一般是在gemotry shadering.
+可以通过 r.ProfileGPU..ShowUI来看到。 
+另外那就是通过viewmode查看 shader 复杂度与还有光照的复杂度。https://udn.epicgames.com/Three/GPUProfilingHome.html
 
 #. EarlyZPass
 #. Base Pass
@@ -289,8 +302,20 @@ Lightmaps 的使用可以减轻CPU与GPU的load. 是不是用lightmaps, 是在pr
 另一个性能的影响那就是static Meshes以及基本primtives.
 
 Materials,采用viewmode来看， 越绿说明复杂度越低。
-
+You can easily see this cost in the Shader Complexity Mode. Bright Red = 300 instructions, pink = 600 instructions, and white >= 900 instructions. Press Alt+8 to view shader complexity on PC.
+https://docs.unrealengine.com/latest/INT/Engine/Rendering/ParticleSystems/Optimization/Results/index.html
 并且对于level的profiling可以细化到每一个primitive，再细化就像修改原始primitive的设计了。
 
 
 同时各种Cull Distance Volumnes的设置是为了优化计算。
+
+
+ContentProfiling
+================
+
+https://udn.epicgames.com/Three/ContentProfilingHome.html
+
+#. 删除那些不会用到 或者重复的资源
+#. 替换掉很少用到资源 
+#. 优化用到次数最多的资源，例如mesh的尽可减少其vertex.
+#. 对于只用很少部分资源想办法拆分，只加载用到部分，尤其是对anim 资源有效。
