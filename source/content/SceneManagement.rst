@@ -104,6 +104,9 @@ GPU profiling
 可以通过 r.ProfileGPU..ShowUI来看到。 
 另外那就是通过viewmode查看 shader 复杂度与还有光照的复杂度。https://udn.epicgames.com/Three/GPUProfilingHome.html
 
+viewmode 就像是PHOTOSHOP中通道一样。方便你查看场景的方方面面。
+https://udn.epicgames.com/Three/ViewModes.html
+
 #. EarlyZPass
 #. Base Pass
 #. Shadow map rendering

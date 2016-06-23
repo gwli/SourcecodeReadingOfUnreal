@@ -770,7 +770,12 @@ https://docs.unrealengine.com/latest/INT/Programming/Slate/index.html 在这里�
 另外一种那是 UMG，可以参考https://docs.unrealengine.com/latest/INT/Engine/UMG/UserGuide/index.html。
 Unreal Motion Graphics UI Designer. 数据的更新最简单的做法，那就是Property Binding来这样会自动更新。 三种做法，另外两种是Function binding,或者event driven.
 
-简单的用法，那就是UMG来实现，还可以加动画。
+简单的用法，那就是UMG来实现，还可以加动画。就像MFC,Qt这样的控制介面的开发。
+https://docs.unrealengine.com/latest/INT/Engine/UMG/UserGuide/WidgetTypeReference/index.html
+比较的强的，Unreal控件比较强的一点，实现了一个浏览器控制，这个还很方便的，这样可以在游戏上网，办空的功能。
+
+如果每天带着一个面罩，这样实现实时或取，这样不就解决了人虚拟中问题。
+
 
 
 testing

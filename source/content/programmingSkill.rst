@@ -17,6 +17,10 @@ IMPLEMENT_PRIMARY_GAME_MODULE， 这种会生成原类。
 
 就是对指针加入自动回收的功能，一般是基于引用计数。引用计数模型不一样，指针的类型就不一样。
 
+回调函数 
+========
+
+系统的初始化在FEngineLoop::AppInit中 最后，FCoreDelegate::OnInit.Broadcast().
 
 Profiling
 =========
