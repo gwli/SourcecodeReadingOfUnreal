@@ -46,7 +46,54 @@ Android Launch/Deploy
 如果只要生成的生成工程只要在LaunchPreparation Commandline 加入。
 
 $(SdkAdbPath) -s $(AndroidDeviceID) shell rm -r /sdcard/UE4Game/MyFirstPerson_4_10_1
-$(SdkAdbPath) -s $(AndroidDeviceID) push "F:\Unreal\Unreal_Projects\MyFirstPerson_4_10_1\Saved\StagedBuilds\Android_ASTC" "/sdcard/UE4Game/MyFirstPerson_4_10_1"
+$(SdkAdbPath) -s $(AndroidDeviceID) push "F:\Unreal\Unreal_Project\MyFirstPerson_4_10_1\Saved\StagedBuilds\Android_ASTC" "/sdcard/UE4Game/MyFirstPerson_4_10_1"
 del /Q "C:\UnrealEngine-4.10\NVIDIA_Android_Lab_GDC2016\Binaries\Android\libUE4.so"
 mklink /H  "C:\UnrealEngine-4.10\NVIDIA_Android_Lab_GDC2016\Binaries\Android\libUE4.so" "C:\UnrealEngine-4.10\Engine\Binaries\Android\UE4Game-Android-Debug-armv7-es31.so"
 
+
+Edtor deploy APK steps
+======================
+
+只要有log与callstack就很容易找到问题的原因。
+
+Program.Main: ERROR: Exception in mscorlib: Could not find a part of the path 'D:\NVPACK\android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.6/libs/armeabi-v7a/libgnustl_shared.so'.
+Stacktrace:    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   at UnrealBuildTool.Android.UEDeployAndroid.CopySTL(String UE4BuildPath, String UE4Arch, String NDKArch, Boolean bForDistribution) in C:\UnrealEngine-4.10\Engine\Source\Programs\UnrealBuildTool\Android\UEDeployAndroid.cs:line 597
+   at UnrealBuildTool.Android.UEDeployAndroid.MakeApk(String ProjectName, String ProjectDirectory, String OutputPath, String EngineDirectory, Boolean bForDistribution, String CookFlavor, Boolean bMakeSeparateApks, Boolean bIncrementalPackage, Boolean bDisallowPackagingDataInApk) in C:\UnrealEngine-4.10\Engine\Source\Programs\UnrealBuildTool\Android\UEDeployAndroid.cs:line 1795
+   at UnrealBuildTool.Android.UEDeployAndroid.PrepForUATPackageOrDeploy(String ProjectName, String ProjectDirectory, String ExecutablePath, String EngineDirectory, Boolean bForDistribution, String CookFlavor, Boolean bIsDataDeploy) in C:\UnrealEngine-4.10\Engine\Source\Programs\UnrealBuildTool\Android\UEDeployAndroid.cs:line 1940
+   at AndroidPlatform.Deploy(ProjectParams Params, DeploymentContext SC) in C:\UnrealEngine-4.10\Engine\Source\Programs\AutomationTool\Android\AndroidPlatform.Automation.cs:line 548
+   at Project.Deploy(ProjectParams Params) in C:\UnrealEngine-4.10\Engine\Source\Programs\AutomationTool\Scripts\DeployCommand.Automation.cs:line 27
+   at BuildCookRun.DoBuildCookRun(ProjectParams Params) in C:\UnrealEngine-4.10\Engine\Source\Programs\AutomationTool\Scripts\BuildCookRun.Automation.cs:line 214
+   at BuildCommand.Execute() in C:\UnrealEngine-4.10\Engine\Source\Programs\AutomationTool\AutomationUtils\BuildCommand.cs:line 35
+   at AutomationTool.Automation.Execute(List`1 CommandsToExecute, CaselessDictionary`1 Commands) in C:\UnrealEngine-4.10\Engine\Source\Programs\AutomationTool\AutomationUtils\Automation.cs:line 395
+   at AutomationTool.Automation.Process(String[] CommandLine) in C:\UnrealEngine-4.10\Engine\Source\Programs\AutomationTool\AutomationUtils\Automation.cs:line 369
+   at AutomationTool.Program.MainProc(Object Param) in C:\UnrealEngine-4.10\Engine\Source\Programs\AutomationTool\Program.cs:line 134
+   at AutomationTool.InternalUtils.RunSingleInstance(Action`1 Main, Object Param) in C:\UnrealEngine-4.10\Engine\Source\Programs\AutomationTool\AutomationUtils\Utils.cs:line 708
+   at AutomationTool.Program.Main() in C:\UnrealEngine-4.10\Engine\Source\Programs\AutomationTool\Program.cs:line 53
+ProcessManager.KillAll: Trying to kill 0 spawned processes.
+
+
+
+如何添加自己的库
+================
+
+例如GOOGLEPLAY Service,这个是在主要是修改在UEDeployAndroid.cs这个文件，相当库都给cp到 Intermediates中，然后调用 ndk,ant来进行编译。
+其本质过程，构造对应的结构，来调用相应的命令来就行了。
+https://forums.unrealengine.com/showthread.php?3504-Android-Java-Libraries-in-UE4-Game-%28OUYA-SDK-Google-Play-Game-Services-etc
+例如java的库放在，Engine/Build/Android/Java/Libs
+其实现在做法是放在，Engine>Extra下面，然后去hack Deploy过程去东西copy过去，不想改engine代码，直接在自己一.cs里实现一下copy就行了。
+
+缓存数据
+========
+
+正确的使用缓存数据可以大大地加快自己速度，因为Unreal中build 与cooking是很费时的。
+如何正确的使用。https://docs.unrealengine.com/latest/CHN/Engine/Basics/DerivedDataCache/index.html
+
+原则，能共享就共享，不能共享就重新生成，而是copy来copy去。
+
+
+Content only Project
+====================
+
+应该指是那些纯blueprint的项目吧，而UE4game.exe 就像一个解析器一样。
