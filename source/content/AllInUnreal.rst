@@ -1,3 +1,67 @@
+
+
+Features
+=========
+
+常见技术参数:
+
+#. API 一般有DX 11/12, OGL,OGLES,vulkan.
+
+#. Texture Resolution 材质解析度
+#. Quadcore-Multithread 多核心多线程
+#. Tesselation 曲面线分
+#. Deferred shading 延迟渲染
+#. Live Create 编辑器动态创建
+#. Full-Dynamic Realtime shading 全动态实时阴影
+#. Direct illumination (直接光照)
+#. indirect illumination 
+#. Global illumination
+#. Local illumination 局光映射
+#. Photon mapping 光子映射贴图
+#. Raytracing 光线追踪
+#. Radiosity 实时辐射照明，计算发光用
+#. bouncing light  
+#. sub-surface scatterring
+#. Translucency shader
+#. Normal map
+#. parallax occlusion 视差映射贴图
+#. Displacement map 硬件位移置换图
+#. megatexture 顶点贴图
+#. Multi-sample 多重采样
+#. Alphato coverage
+#. shadow map
+#. instancing 点缓存系统
+#. Gizmo particle 容积粒子
+#. Volume Shader 
+#. Vertex Animation
+#. Character dynmaics
+
+
+
+4.12 现在支持 VR editor,以及sequencer用法。sequencer用法，保存不是静态二维数据，而一个三维场景。
+
+
+
+
+
+finding actor
+==============
+
+游戏中要尽可能避免那样操作，因为比较耗时，一般都采用方法，那就是保存reference,
+而实在不行就遍历了。
+https://wiki.unrealengine.com/Iterators:_Object_%26_Actor_Iterators,_Optional_Class_Scope_For_Faster_Search
+
+在Unreal中，搜索基本上都是基于TArray中，World存有Level的link
+每一个World里，会有当前各种资源的列表，以前当激活的列表。
+对于level也是样的。
+
+例如某一个actor,或者一类actor都是调用的Level
+
+一种是打tag在actor上，这样就可以直接搜索到。
+http://docs.unrealengine.com/latest/INT/Gameplay/HowTo/FindingActors/Blueprints/index.html
+
+
+
 CreateNavigationSystem 是在InitWorld时创建的。
 	VehicleAdvanced_C-Win64-Debug.exe!UNavigationSystem::CreateNavigationSystem(UWorld * WorldOwner) Line 2150	C++
  	VehicleAdvanced_C-Win64-Debug.exe!UWorld::InitWorld(const UWorld::InitializationValues IVS) Line 913	C++
@@ -10,6 +74,14 @@ CreateNavigationSystem 是在InitWorld时创建的。
  	VehicleAdvanced_C-Win64-Debug.exe!GuardedMain(const wchar_t * CmdLine, HINSTANCE__ * hInInstance, HINSTANCE__ * hPrevInstance, int nCmdShow) Line 136	C++
  	VehicleAdvanced_C-Win64-Debug.exe!WinMain(HINSTANCE__ * hInInstance, HINSTANCE__ * hPrevInstance, char * __formal, int nCmdShow) Line 189	C++
  	[External Code]	
+
+生成与死亡
+==========
+
+在游戏中采用的设计模式的方法，WorldSetting里可以指定默认的，也可以使用特定的。
+http://docs.unrealengine.com/latest/INT/Gameplay/HowTo/SpawnAndDestroyActors/Blueprints/index.html
+
+
 
 CalcAABB
 =========
@@ -59,3 +131,17 @@ Precomputed
 同时也可以通过:command:`start initviews` 来查看。 
 
 当然也可以通过 :command:`start openglrhi` 来查看。
+
+
+Editor技巧
+==========
+
+keyboardshortcut设置在https://docs.unrealengine.com/latest/INT/Engine/UI/KeyBindings/index.html，并且应该可以不同theme,例如使用3Dmax的习惯，或者blender的习惯。
+blueeditor的一张表在https://cdn2.unrealengine.com/blog/BlueprintCheatSheet-1989117414.pdf
+https://docs.unrealengine.com/latest/INT/Engine/Blueprints/UserGuide/CheatSheet/index.html
+关键是Ctrl+F 的搜索功能。
+
+以及各种常用尺寸，一般情况是1 unreal unit = 1cm,以及X,Y,Z等等的尺寸。
+https://wiki.unrealengine.com/User_Submitted_Art_Specifications
+
+
