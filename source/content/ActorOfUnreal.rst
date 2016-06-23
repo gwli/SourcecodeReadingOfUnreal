@@ -49,3 +49,13 @@ https://www.unrealengine.com/blog/input-action-and-axis-mappings-in-ue4
 例如轨道旋转 https://forums.unrealengine.com/showthread.php?92190-How-to-rotate-an-actor-around-another-actor
 
 或者简单的不需要物理计算，只是简单的动画KR之类的依赖。 直接使用仿射变换方程就行了。
+
+一种是动化的， 一种物理状态，这样那就是物理模型的计算，并且也还有一个树形的依赖，就像那个IK运动模型一样。
+在游戏里一般物理运算简单模拟，而不是很深级别的有限元计算方法。
+
+
+Componment
+==========
+
+SpringArm  最常见用法那就是用于Camera的连接，用途那就是保持连接依赖，又不需要碰撞检测。
+https://forums.unrealengine.com/showthread.php?893-Component-SpringArm
