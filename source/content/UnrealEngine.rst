@@ -774,7 +774,8 @@ Unreal Motion Graphics UI Designer. 数据的更新最简单的做法，那就�
 https://docs.unrealengine.com/latest/INT/Engine/UMG/UserGuide/WidgetTypeReference/index.html
 比较的强的，Unreal控件比较强的一点，实现了一个浏览器控制，这个还很方便的，这样可以在游戏上网，办空的功能。
 
-如果每天带着一个面罩，这样实现实时或取，这样不就解决了人虚拟中问题。
+
+
 
 
 
