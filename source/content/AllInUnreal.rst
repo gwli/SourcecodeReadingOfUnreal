@@ -44,43 +44,6 @@ Features
 
 
 
-finding actor
-==============
-
-游戏中要尽可能避免那样操作，因为比较耗时，一般都采用方法，那就是保存reference,
-而实在不行就遍历了。
-https://wiki.unrealengine.com/Iterators:_Object_%26_Actor_Iterators,_Optional_Class_Scope_For_Faster_Search
-
-在Unreal中，搜索基本上都是基于TArray中，World存有Level的link
-每一个World里，会有当前各种资源的列表，以前当激活的列表。
-对于level也是样的。
-
-例如某一个actor,或者一类actor都是调用的Level
-
-一种是打tag在actor上，这样就可以直接搜索到。
-http://docs.unrealengine.com/latest/INT/Gameplay/HowTo/FindingActors/Blueprints/index.html
-
-
-
-CreateNavigationSystem 是在InitWorld时创建的。
-	VehicleAdvanced_C-Win64-Debug.exe!UNavigationSystem::CreateNavigationSystem(UWorld * WorldOwner) Line 2150	C++
- 	VehicleAdvanced_C-Win64-Debug.exe!UWorld::InitWorld(const UWorld::InitializationValues IVS) Line 913	C++
- 	VehicleAdvanced_C-Win64-Debug.exe!UEngine::LoadMap(FWorldContext & WorldContext, FURL URL, UPendingNetGame * Pending, FString & Error) Line 9753	C++
- 	VehicleAdvanced_C-Win64-Debug.exe!UEngine::Browse(FWorldContext & WorldContext, FURL URL, FString & Error) Line 8945	C++
- 	VehicleAdvanced_C-Win64-Debug.exe!UGameInstance::StartGameInstance() Line 339	C++
- 	VehicleAdvanced_C-Win64-Debug.exe!UGameEngine::Init(IEngineLoop * InEngineLoop) Line 529	C++
- 	VehicleAdvanced_C-Win64-Debug.exe!FEngineLoop::Init() Line 2185	C++
- 	VehicleAdvanced_C-Win64-Debug.exe!EngineInit() Line 41	C++
- 	VehicleAdvanced_C-Win64-Debug.exe!GuardedMain(const wchar_t * CmdLine, HINSTANCE__ * hInInstance, HINSTANCE__ * hPrevInstance, int nCmdShow) Line 136	C++
- 	VehicleAdvanced_C-Win64-Debug.exe!WinMain(HINSTANCE__ * hInInstance, HINSTANCE__ * hPrevInstance, char * __formal, int nCmdShow) Line 189	C++
- 	[External Code]	
-
-生成与死亡
-==========
-
-在游戏中采用的设计模式的方法，WorldSetting里可以指定默认的，也可以使用特定的。
-http://docs.unrealengine.com/latest/INT/Gameplay/HowTo/SpawnAndDestroyActors/Blueprints/index.html
-
 
 
 CalcAABB
