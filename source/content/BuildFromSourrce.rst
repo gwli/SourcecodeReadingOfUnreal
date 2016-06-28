@@ -84,6 +84,11 @@ https://forums.unrealengine.com/showthread.php?3504-Android-Java-Libraries-in-UE
 例如java的库放在，Engine/Build/Android/Java/Libs
 其实现在做法是放在，Engine>Extra下面，然后去hack Deploy过程去东西copy过去，不想改engine代码，直接在自己一.cs里实现一下copy就行了。
 
+
+另外添加一些地方库，也就是添加头文件与库路径的问题，修改编译选项。
+https://wiki.unrealengine.com/Linking_Static_Libraries_Using_The_Build_System 同时能够添加把脚本语言给加进来，已经有人把Javascript给
+放进来了，https://forums.unrealengine.com/showthread.php?254-Linking-V8-(JavaScript)-to-UE4
+
 缓存数据
 ========
 
