@@ -112,6 +112,8 @@ https://docs.unrealengine.com/latest/INT/Engine/Blueprints/UserGuide/CheatSheet/
 https://forums.unrealengine.com/showthread.php?49057-UE-4-Python-Tools-from-Tragnarion
 
 当你有各种各样的需求时,看看https://wiki.unrealengine.com/Category:Plug-ins 有没有现成插件可以用的.
+或者论坛里看看,有什么合适的例如下面,有人做一个blueprint 共享库.
+https://forums.unrealengine.com/showthread.php?3851-%2839%29-Rama-s-Extra-Blueprint-Nodes-for-You-as-a-Plugin-No-C-Required
 
 以及各种常用尺寸，一般情况是1 unreal unit = 1cm,以及X,Y,Z等等的尺寸。
 https://wiki.unrealengine.com/User_Submitted_Art_Specifications
