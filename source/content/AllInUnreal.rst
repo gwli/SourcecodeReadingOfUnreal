@@ -108,6 +108,15 @@ https://docs.unrealengine.com/latest/INT/Engine/Blueprints/UserGuide/CheatSheet/
 关键是Ctrl+F 的搜索功能。
 
 
+plugin
+=======
+
+用法
+#. put into /<Engine>/Plgins/Runtime or <YourProjects>/Plugins/
+#. build 
+#. Run editor 
+#. check it in puglin list
+
 当你真正使用时,也还会有各种各样的问题,例如生成生成以及reference的更新等等.
 https://forums.unrealengine.com/showthread.php?49057-UE-4-Python-Tools-from-Tragnarion
 
@@ -120,4 +129,5 @@ https://forums.unrealengine.com/showthread.php?58192-PLUGIN-BLUI-Open-Source-HTM
 以及各种常用尺寸，一般情况是1 unreal unit = 1cm,以及X,Y,Z等等的尺寸。
 https://wiki.unrealengine.com/User_Submitted_Art_Specifications
 
-
+TextureMoviePlugin
+https://github.com/Ehamloptiran/TextureMoviePlugin
