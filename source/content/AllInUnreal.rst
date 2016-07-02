@@ -115,6 +115,8 @@ https://forums.unrealengine.com/showthread.php?49057-UE-4-Python-Tools-from-Trag
 或者论坛里看看,有什么合适的例如下面,有人做一个blueprint 共享库.
 https://forums.unrealengine.com/showthread.php?3851-%2839%29-Rama-s-Extra-Blueprint-Nodes-for-You-as-a-Plugin-No-C-Required
 
+BLUI 插件
+https://forums.unrealengine.com/showthread.php?58192-PLUGIN-BLUI-Open-Source-HTML5-JS-CSS-HUD-UI-Release-1-0!
 以及各种常用尺寸，一般情况是1 unreal unit = 1cm,以及X,Y,Z等等的尺寸。
 https://wiki.unrealengine.com/User_Submitted_Art_Specifications
 
