@@ -131,3 +131,9 @@ https://wiki.unrealengine.com/User_Submitted_Art_Specifications
 
 TextureMoviePlugin
 https://github.com/Ehamloptiran/TextureMoviePlugin 实现就如http://www.jianshu.com/p/291ff6ddc164,用于VR 非常方便
+
+当然你如果添加自己的脚本,可以考参scriptplugin,它已经生成公共的接口,让你很方便嵌入任何脚本语言.例如
+Lua.
+https://forums.unrealengine.com/showthread.php?3958-Scripting-Language-extensions-via-plugins
+
+https://github.com/enlight/klawr,用C#来做gameplay logic scripts.
