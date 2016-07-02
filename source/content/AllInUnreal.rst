@@ -130,4 +130,4 @@ https://forums.unrealengine.com/showthread.php?58192-PLUGIN-BLUI-Open-Source-HTM
 https://wiki.unrealengine.com/User_Submitted_Art_Specifications
 
 TextureMoviePlugin
-https://github.com/Ehamloptiran/TextureMoviePlugin
+https://github.com/Ehamloptiran/TextureMoviePlugin 实现就如http://www.jianshu.com/p/291ff6ddc164,用于VR 非常方便
