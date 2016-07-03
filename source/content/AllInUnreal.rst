@@ -277,3 +277,12 @@ void UCharacterMovementComponent::StartNewPhysics(float deltaTime, int32 Iterati
 #.　再blender等变成低模,并且模块化.　例如选一模导出一下.　然后删除一些再导出一些组件.
 #.　再导入Unreal.　进行进一步的开发.
 例如https://www.youtube.com/watch?annotation_id=annotation_1089853839&feature=iv&src_vid=bero-JBTAX8&v=Ux_zJ4WJbZg
+
+
+如何导入真实的地形
+==================
+
+#.　从http://opentopo.sdsc.edu/datasets 下载数据
+#.　利用类似于L3DT的工具生成map
+#.  导入Unreal, Window>Level>import new map.
+https://www.youtube.com/watch?v=K41WMgJUFEk
