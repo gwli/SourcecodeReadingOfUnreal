@@ -138,6 +138,9 @@ https://forums.unrealengine.com/showthread.php?3958-Scripting-Language-extension
 
 https://github.com/enlight/klawr,用C#来做gameplay logic scripts.
 
+一个更强的组件,那是runtime mesh generate,当然这个性能可能是问题,但是这个就为内容的动态演化提供了可能,尤其在虚拟现实中
+真实会更强.
+https://forums.unrealengine.com/showthread.php?113432-Runtime-Mesh-Component-Rendering-high-performance-runtime-generated-meshes!
 
 
 AI in Game
