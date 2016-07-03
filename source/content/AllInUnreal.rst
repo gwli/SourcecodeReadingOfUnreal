@@ -267,3 +267,10 @@ void UCharacterMovementComponent::StartNewPhysics(float deltaTime, int32 Iterati
 
 
 
+如何建模
+========
+
+#.　使用建模仿真软件生成高模.　然后导出.
+#.　再blender等变成低模,并且模块化.　例如选一模导出一下.　然后删除一些再导出一些组件.
+#.　再导入Unreal.　进行进一步的开发.
+例如https://www.youtube.com/watch?annotation_id=annotation_1089853839&feature=iv&src_vid=bero-JBTAX8&v=Ux_zJ4WJbZg
