@@ -89,6 +89,13 @@ https://forums.unrealengine.com/showthread.php?3504-Android-Java-Libraries-in-UE
 https://wiki.unrealengine.com/Linking_Static_Libraries_Using_The_Build_System 同时能够添加把脚本语言给加进来，已经有人把Javascript给
 放进来了，https://forums.unrealengine.com/showthread.php?254-Linking-V8-(JavaScript)-to-UE4
 
+正式的做法,继承Unreal的相应Build类,然后添加对应的项.
+
+实践中经常做法,直接把对应的库copy相应的路径,并在对应的源码修改几行就行了,当然这不是一个标准的plugin的做法,但是最简单最快
+的做法.例如ouya的unreal开发一样.https://github.com/ouya/docs/blob/master/unreal.md
+并且不少游戏工作室都是这么干的. 我们添加nvtx的支持也这么干过.
+
+
 缓存数据
 ========
 

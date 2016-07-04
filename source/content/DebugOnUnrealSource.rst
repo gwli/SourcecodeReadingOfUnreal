@@ -18,3 +18,9 @@ Unreal支持从服务上下载symbols,如果自己编译source的话，这个工
 https://docs.unrealengine.com/latest/INT/Programming/Development/Tools/SymbolDebugger/index.html#methodselection。 
 
 相当于帮你做初步的分析。
+
+
+如何精确控制场景呢
+===================
+
+可以用skookumscript 来进行. 或者自己扩展一个shell这样来加Unreal 的console窗口.
