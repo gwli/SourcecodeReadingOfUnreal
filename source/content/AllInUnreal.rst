@@ -1,4 +1,4 @@
-
+要看资源大小可以用Asset Size Mapper来查看。直接点右键就可以看到了。
 
 Features
 =========
