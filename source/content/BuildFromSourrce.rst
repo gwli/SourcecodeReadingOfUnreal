@@ -27,28 +27,33 @@
 
 Android Launch/Deploy
 =====================
+
 如果每一次用都editor太浪费时间。
+
 #. 安装apk
 #. push 文件
 
-   .. code-block:: python
-   adb.exe -s TNS0000002194000590a shell "echo $EXTERNAL_STORAGE"
-   adb.exe -s TNS0000002194000590a uninstall com.YourCompany.VehicleAdvanced_C
-   adb.exe -s TNS0000002194000590a install "D:\UE4_11\Unreal_Projects\VehicleAdvanced_C\Binaries/Android\VehicleAdvanced_C-Android-Debug-armv7-es2.apk"
-   adb.exe -s TNS0000002194000590a shell rm -r /sdcard/UE4Game/VehicleAdvanced_C
-   adb.exe -s TNS0000002194000590a push "D:\UE4_11\Unreal_Projects\VehicleAdvanced_C\Saved\StagedBuilds\Android_ASTC" "/sdcard/UE4Game/VehicleAdvanced_C"
-   adb.exe -s TNS0000002194000590a shell rm /sdcard/obb/com.YourCompany.VehicleAdvanced_C/main.1.com.YourCompany.VehicleAdvanced_C.obb
-   adb.exe -s TNS0000002194000590a shell "echo 'APK: 5/13/2016 10:13:32 AM' > /sdcard/UE4Game/VehicleAdvanced_C/APKFileStamp.txt"
-   adb.exe -s TNS0000002194000590a shell am start -n com.YourCompany.VehicleAdvanced_C/com.epicgames.ue4.SplashActivity
+   .. code-block:: bash
+
+      adb.exe -s TNS0000002194000590a shell "echo $EXTERNAL_STORAGE"
+      adb.exe -s TNS0000002194000590a uninstall com.YourCompany.VehicleAdvanced_C
+      adb.exe -s TNS0000002194000590a install "D:\UE4_11\Unreal_Projects\VehicleAdvanced_C\Binaries/Android\VehicleAdvanced_C-Android-Debug-armv7-es2.apk"
+      adb.exe -s TNS0000002194000590a shell rm -r /sdcard/UE4Game/VehicleAdvanced_C
+      adb.exe -s TNS0000002194000590a push "D:\UE4_11\Unreal_Projects\VehicleAdvanced_C\Saved\StagedBuilds\Android_ASTC" "/sdcard/UE4Game/VehicleAdvanced_C"
+      adb.exe -s TNS0000002194000590a shell rm /sdcard/obb/com.YourCompany.VehicleAdvanced_C/main.1.com.YourCompany.VehicleAdvanced_C.obb
+      adb.exe -s TNS0000002194000590a shell "echo 'APK: 5/13/2016 10:13:32 AM' > /sdcard/UE4Game/VehicleAdvanced_C/APKFileStamp.txt"
+      adb.exe -s TNS0000002194000590a shell am start -n com.YourCompany.VehicleAdvanced_C/com.epicgames.ue4.SplashActivity
    
     
 
 如果只要生成的生成工程只要在LaunchPreparation Commandline 加入。
 
-$(SdkAdbPath) -s $(AndroidDeviceID) shell rm -r /sdcard/UE4Game/MyFirstPerson_4_10_1
-$(SdkAdbPath) -s $(AndroidDeviceID) push "F:\Unreal\Unreal_Project\MyFirstPerson_4_10_1\Saved\StagedBuilds\Android_ASTC" "/sdcard/UE4Game/MyFirstPerson_4_10_1"
-del /Q "C:\UnrealEngine-4.10\NVIDIA_Android_Lab_GDC2016\Binaries\Android\libUE4.so"
-mklink /H  "C:\UnrealEngine-4.10\NVIDIA_Android_Lab_GDC2016\Binaries\Android\libUE4.so" "C:\UnrealEngine-4.10\Engine\Binaries\Android\UE4Game-Android-Debug-armv7-es31.so"
+.. code-block:: bash
+
+   $(SdkAdbPath) -s $(AndroidDeviceID) shell rm -r /sdcard/UE4Game/MyFirstPerson_4_10_1
+   $(SdkAdbPath) -s $(AndroidDeviceID) push "F:\Unreal\Unreal_Project\MyFirstPerson_4_10_1\Saved\StagedBuilds\Android_ASTC" "/sdcard/UE4Game/MyFirstPerson_4_10_1"
+   del /Q "C:\UnrealEngine-4.10\NVIDIA_Android_Lab_GDC2016\Binaries\Android\libUE4.so"
+   mklink /H  "C:\UnrealEngine-4.10\NVIDIA_Android_Lab_GDC2016\Binaries\Android\libUE4.so" "C:\UnrealEngine-4.10\Engine\Binaries\Android\UE4Game-Android-Debug-armv7-es31.so"
 
 
 Edtor deploy APK steps
@@ -56,22 +61,24 @@ Edtor deploy APK steps
 
 只要有log与callstack就很容易找到问题的原因。
 
-Program.Main: ERROR: Exception in mscorlib: Could not find a part of the path 'D:\NVPACK\android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.6/libs/armeabi-v7a/libgnustl_shared.so'.
-Stacktrace:    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
-   at System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
-   at UnrealBuildTool.Android.UEDeployAndroid.CopySTL(String UE4BuildPath, String UE4Arch, String NDKArch, Boolean bForDistribution) in C:\UnrealEngine-4.10\Engine\Source\Programs\UnrealBuildTool\Android\UEDeployAndroid.cs:line 597
-   at UnrealBuildTool.Android.UEDeployAndroid.MakeApk(String ProjectName, String ProjectDirectory, String OutputPath, String EngineDirectory, Boolean bForDistribution, String CookFlavor, Boolean bMakeSeparateApks, Boolean bIncrementalPackage, Boolean bDisallowPackagingDataInApk) in C:\UnrealEngine-4.10\Engine\Source\Programs\UnrealBuildTool\Android\UEDeployAndroid.cs:line 1795
-   at UnrealBuildTool.Android.UEDeployAndroid.PrepForUATPackageOrDeploy(String ProjectName, String ProjectDirectory, String ExecutablePath, String EngineDirectory, Boolean bForDistribution, String CookFlavor, Boolean bIsDataDeploy) in C:\UnrealEngine-4.10\Engine\Source\Programs\UnrealBuildTool\Android\UEDeployAndroid.cs:line 1940
-   at AndroidPlatform.Deploy(ProjectParams Params, DeploymentContext SC) in C:\UnrealEngine-4.10\Engine\Source\Programs\AutomationTool\Android\AndroidPlatform.Automation.cs:line 548
-   at Project.Deploy(ProjectParams Params) in C:\UnrealEngine-4.10\Engine\Source\Programs\AutomationTool\Scripts\DeployCommand.Automation.cs:line 27
-   at BuildCookRun.DoBuildCookRun(ProjectParams Params) in C:\UnrealEngine-4.10\Engine\Source\Programs\AutomationTool\Scripts\BuildCookRun.Automation.cs:line 214
-   at BuildCommand.Execute() in C:\UnrealEngine-4.10\Engine\Source\Programs\AutomationTool\AutomationUtils\BuildCommand.cs:line 35
-   at AutomationTool.Automation.Execute(List`1 CommandsToExecute, CaselessDictionary`1 Commands) in C:\UnrealEngine-4.10\Engine\Source\Programs\AutomationTool\AutomationUtils\Automation.cs:line 395
-   at AutomationTool.Automation.Process(String[] CommandLine) in C:\UnrealEngine-4.10\Engine\Source\Programs\AutomationTool\AutomationUtils\Automation.cs:line 369
-   at AutomationTool.Program.MainProc(Object Param) in C:\UnrealEngine-4.10\Engine\Source\Programs\AutomationTool\Program.cs:line 134
-   at AutomationTool.InternalUtils.RunSingleInstance(Action`1 Main, Object Param) in C:\UnrealEngine-4.10\Engine\Source\Programs\AutomationTool\AutomationUtils\Utils.cs:line 708
-   at AutomationTool.Program.Main() in C:\UnrealEngine-4.10\Engine\Source\Programs\AutomationTool\Program.cs:line 53
-ProcessManager.KillAll: Trying to kill 0 spawned processes.
+.. code-block:: bash
+
+   Program.Main: ERROR: Exception in mscorlib: Could not find a part of the path 'D:\NVPACK\android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.6/libs/armeabi-v7a/libgnustl_shared.so'.
+   Stacktrace:    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+      at System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+      at UnrealBuildTool.Android.UEDeployAndroid.CopySTL(String UE4BuildPath, String UE4Arch, String NDKArch, Boolean bForDistribution) in C:\UnrealEngine-4.10\Engine\Source\Programs\UnrealBuildTool\Android\UEDeployAndroid.cs:line 597
+      at UnrealBuildTool.Android.UEDeployAndroid.MakeApk(String ProjectName, String ProjectDirectory, String OutputPath, String EngineDirectory, Boolean bForDistribution, String CookFlavor, Boolean bMakeSeparateApks, Boolean bIncrementalPackage, Boolean bDisallowPackagingDataInApk) in C:\UnrealEngine-4.10\Engine\Source\Programs\UnrealBuildTool\Android\UEDeployAndroid.cs:line 1795
+      at UnrealBuildTool.Android.UEDeployAndroid.PrepForUATPackageOrDeploy(String ProjectName, String ProjectDirectory, String ExecutablePath, String EngineDirectory, Boolean bForDistribution, String CookFlavor, Boolean bIsDataDeploy) in C:\UnrealEngine-4.10\Engine\Source\Programs\UnrealBuildTool\Android\UEDeployAndroid.cs:line 1940
+      at AndroidPlatform.Deploy(ProjectParams Params, DeploymentContext SC) in C:\UnrealEngine-4.10\Engine\Source\Programs\AutomationTool\Android\AndroidPlatform.Automation.cs:line 548
+      at Project.Deploy(ProjectParams Params) in C:\UnrealEngine-4.10\Engine\Source\Programs\AutomationTool\Scripts\DeployCommand.Automation.cs:line 27
+      at BuildCookRun.DoBuildCookRun(ProjectParams Params) in C:\UnrealEngine-4.10\Engine\Source\Programs\AutomationTool\Scripts\BuildCookRun.Automation.cs:line 214
+      at BuildCommand.Execute() in C:\UnrealEngine-4.10\Engine\Source\Programs\AutomationTool\AutomationUtils\BuildCommand.cs:line 35
+      at AutomationTool.Automation.Execute(List`1 CommandsToExecute, CaselessDictionary`1 Commands) in C:\UnrealEngine-4.10\Engine\Source\Programs\AutomationTool\AutomationUtils\Automation.cs:line 395
+      at AutomationTool.Automation.Process(String[] CommandLine) in C:\UnrealEngine-4.10\Engine\Source\Programs\AutomationTool\AutomationUtils\Automation.cs:line 369
+      at AutomationTool.Program.MainProc(Object Param) in C:\UnrealEngine-4.10\Engine\Source\Programs\AutomationTool\Program.cs:line 134
+      at AutomationTool.InternalUtils.RunSingleInstance(Action`1 Main, Object Param) in C:\UnrealEngine-4.10\Engine\Source\Programs\AutomationTool\AutomationUtils\Utils.cs:line 708
+      at AutomationTool.Program.Main() in C:\UnrealEngine-4.10\Engine\Source\Programs\AutomationTool\Program.cs:line 53
+   ProcessManager.KillAll: Trying to kill 0 spawned processes.
 
 
 
