@@ -186,7 +186,7 @@ html_static_path = ['_static']
 #html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'MyLinuxdoc'
+htmlhelp_basename = 'SourcecodeReadingOfUnreal'
 
 
 # -- Options for LaTeX output ---------------------------------------------
