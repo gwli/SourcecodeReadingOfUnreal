@@ -12,6 +12,7 @@ Contents:
    :maxdepth: 2
 
    Target.rst
+   content/BuildFromSourrce.rst
    content/ActorOfUnreal.rst
    content/AllInUnreal.rst
    content/Automation.rst
