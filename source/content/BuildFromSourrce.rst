@@ -56,7 +56,7 @@ Android Launch/Deploy
    mklink /H  "C:\UnrealEngine-4.10\NVIDIA_Android_Lab_GDC2016\Binaries\Android\libUE4.so" "C:\UnrealEngine-4.10\Engine\Binaries\Android\UE4Game-Android-Debug-armv7-es31.so"
 
 
-Edtor deploy APK steps
+Editor deploy APK steps
 ======================
 
 只要有log与callstack就很容易找到问题的原因。
@@ -116,3 +116,5 @@ Content only Project
 ====================
 
 应该指是那些纯blueprint的项目吧，而UE4game.exe 就像一个解析器一样。
+
+
